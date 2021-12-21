@@ -2,8 +2,8 @@
  const mongoose = require('mongoose');
 
  const server= express();
-const mongo_db_url='mongodb+srv://AdomAsare:dot3590.@cluster0.andw3.mo,,lllllllllllllllllllllllllllllkngodb.net/todos_db?retryWrites=true&w=majority'
-
+//const mongo_db_url = ';
+//const mongo_db_url='mongodb://localhost/todos
  server.get('/ride-order', function(req, res){
      res.status(200).json('All ride-order account');
  });
