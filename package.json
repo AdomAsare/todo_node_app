@@ -2,9 +2,9 @@
   "name": "node_js",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "express_app.js",
   "scripts": {
-    "app": "nodemon npm express_app.js"
+    "app": "nodemon express_app.js"
   },
   "keywords": [],
   "author": "ADOM",

@@ -1,22 +1,26 @@
- const express = require('express');
+require('dotenv').config();
+const express = require('express');
  const mongoose = require('mongoose');
-
+const todoController= require('./controllers/todoController')
+const PORT=process.env.PORT||4000;
  const server= express();
 //const mongo_db_url = ';
 //const mongo_db_url='mongodb://localhost/todos
- server.get('/ride-order', function(req, res){
-     res.status(200).json('All ride-order account');
- });
- server.post('/ride-order', function(req, res){
-     res.status(200).json('Create a new ride-order account')
- });
- server.put('/ride-order', function(req, res){
-     res.status(200).json('Update ride-order account');
- });
- server.delete('/ride-order', function(req, res){
-     res.status(200).json('Delete a ride-order account')
- });
 
- server.listen(4000, function(){
-     console.log('Server has started to run in express')
- });
+server.use(express.json());
+
+server.listen(PORT, function(){
+    console.log('Server has started to run in express');
+    mongoose.connect(process.env.ATLAS_URL)
+    .then(function(){
+        console.log('DB is connected');
+        server.get('/todo',todoController.getAllTodos);
+        server.get('/todo/:id',todoController.getTodoById);
+        server.post('/todo',todoController.insertTodo);
+        server.put('/todo/:id',todoController.updateTodoById);
+        server.delete('/todo/:id',todoController.deleteTodoById)
+    })
+    .catch(function(error){
+        console.log('DB isnot connected:',error)
+    });
+});
